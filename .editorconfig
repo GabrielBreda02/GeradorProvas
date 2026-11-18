@@ -1,0 +1,35 @@
+root = true
+
+[*.cs]
+indent_style = space
+indent_size = 4
+charset = utf-8
+
+# Padrão da disciplina: um namespace por camada (Fsg.ProgramacaoOrientadaObjetos.GeradorProvas.<Camada>),
+# mesmo com os arquivos organizados em pastas dentro do projeto.
+dotnet_style_namespace_match_folder = false
+csharp_style_namespace_declarations = file_scoped:warning
+
+# Constantes em PascalCase.
+dotnet_naming_rule.constantes.symbols = constantes
+dotnet_naming_rule.constantes.style = pascal_case
+dotnet_naming_rule.constantes.severity = warning
+dotnet_naming_symbols.constantes.applicable_kinds = field
+dotnet_naming_symbols.constantes.required_modifiers = const
+dotnet_naming_style.pascal_case.capitalization = pascal_case
+
+# Campos privados em _camelCase.
+dotnet_naming_rule.campos_privados.symbols = campos_privados
+dotnet_naming_rule.campos_privados.style = sublinhado_camel_case
+dotnet_naming_rule.campos_privados.severity = warning
+dotnet_naming_symbols.campos_privados.applicable_kinds = field
+dotnet_naming_symbols.campos_privados.applicable_accessibilities = private
+dotnet_naming_style.sublinhado_camel_case.required_prefix = _
+dotnet_naming_style.sublinhado_camel_case.capitalization = camel_case
+
+# Construtores clássicos em vez de primários: o padrão da disciplina pede campos privados em _camelCase.
+csharp_style_prefer_primary_constructors = false
+dotnet_diagnostic.IDE0290.severity = none
+
+# Consultas LINQ terminam em .ToList(), que lê melhor do que [.. consulta].
+dotnet_diagnostic.IDE0305.severity = none

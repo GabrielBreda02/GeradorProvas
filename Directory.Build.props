@@ -1,0 +1,12 @@
+<Project>
+
+  <!-- Configurações comuns aos quatro projetos, para não repeti-las em cada .csproj. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Fsg.ProgramacaoOrientadaObjetos.$(MSBuildProjectName)</RootNamespace>
+  </PropertyGroup>
+
+</Project>

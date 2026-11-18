@@ -1,0 +1,309 @@
+# Roteiro de demonstração da API (rode de cima para baixo com a API recém-iniciada).
+# Como os dados ficam em memória, os ids começam em 1 a cada execução.
+
+@baseUrl = http://localhost:5000
+
+##############################################################################
+# RF01 — Cadastrar questões (201 Created com o id)
+##############################################################################
+
+### Questão 1 — POO II / SOLID
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "SOLID",
+  "enunciado": "Qual princípio afirma que uma classe deve ter um único motivo para mudar?",
+  "alternativas": [
+    { "texto": "Princípio da Responsabilidade Única", "correta": true },
+    { "texto": "Princípio Aberto-Fechado", "correta": false },
+    { "texto": "Princípio da Inversão de Dependência", "correta": false }
+  ]
+}
+
+### Questão 2 — POO II / SOLID
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "SOLID",
+  "enunciado": "Qual princípio diz que uma classe deve estar aberta para extensão e fechada para modificação?",
+  "alternativas": [
+    { "texto": "Princípio da Substituição de Liskov", "correta": false },
+    { "texto": "Princípio Aberto-Fechado", "correta": true },
+    { "texto": "Princípio da Segregação de Interfaces", "correta": false }
+  ]
+}
+
+### Questão 3 — POO II / SOLID
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "SOLID",
+  "enunciado": "Segundo o Princípio da Inversão de Dependência, módulos de alto nível devem depender de quê?",
+  "alternativas": [
+    { "texto": "De classes concretas", "correta": false },
+    { "texto": "De abstrações", "correta": true },
+    { "texto": "Do banco de dados", "correta": false },
+    { "texto": "Da interface gráfica", "correta": false }
+  ]
+}
+
+### Questão 4 — POO II / Design Patterns
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "Design Patterns",
+  "enunciado": "Qual padrão encapsula algoritmos intercambiáveis?",
+  "alternativas": [
+    { "texto": "Singleton", "correta": false },
+    { "texto": "Strategy", "correta": true }
+  ]
+}
+
+### Questão 5 — POO II / Design Patterns
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "Design Patterns",
+  "enunciado": "Qual padrão garante que uma classe tenha uma única instância?",
+  "alternativas": [
+    { "texto": "Observer", "correta": false },
+    { "texto": "Singleton", "correta": true },
+    { "texto": "Adapter", "correta": false }
+  ]
+}
+
+### Questão 6 — POO II / Design Patterns
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "Design Patterns",
+  "enunciado": "Qual padrão isola o acesso a dados atrás de uma interface parecida com uma coleção?",
+  "alternativas": [
+    { "texto": "Repository", "correta": true },
+    { "texto": "Decorator", "correta": false },
+    { "texto": "Facade", "correta": false },
+    { "texto": "Builder", "correta": false }
+  ]
+}
+
+### Questão 7 — POO II / Encapsulamento (fica de fora do filtro da prova A1)
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "Encapsulamento",
+  "enunciado": "Expor uma lista como IReadOnlyList, mantendo a List em um campo privado, aplica qual conceito?",
+  "alternativas": [
+    { "texto": "Herança", "correta": false },
+    { "texto": "Encapsulamento", "correta": true },
+    { "texto": "Polimorfismo", "correta": false }
+  ]
+}
+
+### Questão 8 — Matemática (estilo ENEM) / Porcentagem — 5 alternativas (o máximo)
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "Matemática",
+  "conteudo": "Porcentagem",
+  "enunciado": "Um produto que custava R$ 80,00 teve um aumento de 15%. Qual é o novo preço?",
+  "alternativas": [
+    { "texto": "R$ 88,00", "correta": false },
+    { "texto": "R$ 92,00", "correta": true },
+    { "texto": "R$ 95,00", "correta": false },
+    { "texto": "R$ 96,00", "correta": false },
+    { "texto": "R$ 100,00", "correta": false }
+  ]
+}
+
+### Questão 9 — Matemática (estilo ENEM) / Porcentagem
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "Matemática",
+  "conteudo": "Porcentagem",
+  "enunciado": "Em uma turma de 40 alunos, 30% foram aprovados direto no simulado. Quantos alunos foram aprovados direto?",
+  "alternativas": [
+    { "texto": "10", "correta": false },
+    { "texto": "12", "correta": true },
+    { "texto": "14", "correta": false },
+    { "texto": "16", "correta": false }
+  ]
+}
+
+### Questão 10 — Matemática (estilo ENEM) / Geometria
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "Matemática",
+  "conteudo": "Geometria",
+  "enunciado": "Qual é a área de um terreno retangular que mede 12 m por 8 m?",
+  "alternativas": [
+    { "texto": "20 m²", "correta": false },
+    { "texto": "40 m²", "correta": false },
+    { "texto": "96 m²", "correta": true },
+    { "texto": "192 m²", "correta": false }
+  ]
+}
+
+##############################################################################
+# RF02 — Consultar questão (200 OK, com a letra da correta)
+##############################################################################
+
+### Questão 1
+GET {{baseUrl}}/questoes/1
+
+##############################################################################
+# RF03 — Listar questões (disciplina obrigatória, conteúdo opcional)
+##############################################################################
+
+### POO II, só SOLID -> 3 questões
+GET {{baseUrl}}/questoes?disciplina=POO%20II&conteudo=SOLID
+
+### Todas de POO II -> 7 questões
+GET {{baseUrl}}/questoes?disciplina=POO%20II
+
+### Todas de Matemática -> 3 questões
+GET {{baseUrl}}/questoes?disciplina=Matem%C3%A1tica
+
+### Disciplina sem questões (História) -> lista vazia
+GET {{baseUrl}}/questoes?disciplina=Hist%C3%B3ria
+
+##############################################################################
+# RF04 — Gerar prova (201 Created com o JSON da prova)
+##############################################################################
+
+### Prova 1 — sorteia 4 entre as 6 questões de SOLID + Design Patterns
+POST {{baseUrl}}/provas
+Content-Type: application/json
+
+{
+  "nome": "Avaliação A1",
+  "disciplina": "POO II",
+  "conteudos": ["SOLID", "Design Patterns"],
+  "numeroQuestoes": 4
+}
+
+### Prova 2 — simulado no estilo ENEM
+POST {{baseUrl}}/provas
+Content-Type: application/json
+
+{
+  "nome": "Simulado ENEM — Matemática",
+  "disciplina": "Matemática",
+  "conteudos": ["Porcentagem", "Geometria"],
+  "numeroQuestoes": 3
+}
+
+##############################################################################
+# RF05 — Consultar prova (mesmas questões, na mesma ordem da geração)
+##############################################################################
+
+### Prova 1
+GET {{baseUrl}}/provas/1
+
+### Prova 2
+GET {{baseUrl}}/provas/2
+
+##############################################################################
+# Casos de erro
+##############################################################################
+
+### RN01 — duas alternativas corretas -> 400
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "SOLID",
+  "enunciado": "Questão inválida",
+  "alternativas": [
+    { "texto": "Opção 1", "correta": true },
+    { "texto": "Opção 2", "correta": true }
+  ]
+}
+
+### RN01 — só uma alternativa -> 400
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "SOLID",
+  "enunciado": "Questão inválida",
+  "alternativas": [
+    { "texto": "Única opção", "correta": true }
+  ]
+}
+
+### RN01 — enunciado em branco -> 400
+POST {{baseUrl}}/questoes
+Content-Type: application/json
+
+{
+  "disciplina": "POO II",
+  "conteudo": "SOLID",
+  "enunciado": "   ",
+  "alternativas": [
+    { "texto": "Opção 1", "correta": true },
+    { "texto": "Opção 2", "correta": false }
+  ]
+}
+
+### RN02 — pede mais questões do que o filtro encontra -> 422
+POST {{baseUrl}}/provas
+Content-Type: application/json
+
+{
+  "nome": "Prova grande demais",
+  "disciplina": "POO II",
+  "conteudos": ["SOLID"],
+  "numeroQuestoes": 10
+}
+
+### RF04 — número de questões zero -> 400
+POST {{baseUrl}}/provas
+Content-Type: application/json
+
+{
+  "nome": "Prova vazia",
+  "disciplina": "POO II",
+  "conteudos": ["SOLID"],
+  "numeroQuestoes": 0
+}
+
+### RF04 — lista de conteúdos vazia -> 400
+POST {{baseUrl}}/provas
+Content-Type: application/json
+
+{
+  "nome": "Prova sem conteúdo",
+  "disciplina": "POO II",
+  "conteudos": [],
+  "numeroQuestoes": 1
+}
+
+### RF03 — listar sem disciplina -> 400
+GET {{baseUrl}}/questoes
+
+### RN06 — questão inexistente -> 404
+GET {{baseUrl}}/questoes/999
+
+### RN06 — prova inexistente -> 404
+GET {{baseUrl}}/provas/999

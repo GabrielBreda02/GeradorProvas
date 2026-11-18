@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\GeradorProvas.Dominio\GeradorProvas.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>
