@@ -33,3 +33,10 @@ dotnet_diagnostic.IDE0290.severity = none
 
 # Consultas LINQ terminam em .ToList(), que lê melhor do que [.. consulta].
 dotnet_diagnostic.IDE0305.severity = none
+
+[tests/**.cs]
+# Nos testes, os valores esperados ficam escritos à mão no próprio assert, de propósito.
+dotnet_diagnostic.CA1861.severity = none
+# Arrays esperados sempre como new[] { ... }: a forma [..] nem sempre é aceita dentro de Assert.Equal,
+# e misturar os dois estilos deixaria os testes inconsistentes.
+dotnet_diagnostic.IDE0300.severity = none

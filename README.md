@@ -19,6 +19,12 @@ provas, consulta e, no final, mostra os casos de erro.
 
 Os dados ficam em memória: ao reiniciar a API, tudo volta ao zero e os ids recomeçam em 1.
 
+Para rodar os testes automatizados:
+
+```bash
+dotnet test
+```
+
 ## Estrutura em camadas
 
 ```
@@ -35,7 +41,10 @@ GeradorProvas.Apresentacao  ──►  GeradorProvas.Aplicacao  ──►  Gerad
 | `GeradorProvas.Apresentacao` | HTTP: controllers, tradução de exceções e composição da injeção de dependência. | `QuestoesController`, `ProvasController`, `TratadorDeExcecoes`, `Program.cs` |
 
 Configurações comuns (`net10.0`, C# 14, nullable, namespace raiz) ficam em
-`Directory.Build.props`, para não serem repetidas nos quatro `.csproj`.
+`Directory.Build.props`, para não serem repetidas em cada `.csproj`.
+
+Fora das camadas, em `tests/`, fica o projeto `GeradorProvas.Testes` (veja
+[Testes automatizados](#testes-automatizados)). Ele não faz parte da API: só a exercita.
 
 ## Endpoints
 
@@ -83,6 +92,26 @@ sempre a mesma prova (**RF05**): consultar não sorteia de novo.
 | Repository e Service Layer | `IRepositorioQuestoes`, `IRepositorioProvas` e os quatro serviços. |
 | DTO | `record`s de entrada e saída; as classes de domínio não aparecem na API. |
 | Camadas | Quatro projetos, com as dependências apontando para o domínio. |
+
+## Testes automatizados
+
+O projeto `tests/GeradorProvas.Testes` (xUnit) tem uma pasta por camada:
+
+| Pasta | O que garante |
+|---|---|
+| `Dominio` | RN01 (campos obrigatórios, 2 a 5 alternativas, exatamente uma correta), RN03 (prova sem questão repetida), encapsulamento das listas. |
+| `Infraestrutura` | Ids sequenciais (RN05), ids que não se repetem com requisições simultâneas, filtros por disciplina e conteúdo, embaralhamento sem perder nem repetir questões. |
+| `Aplicacao` | Letras A, B, C… e letra correta (RN04), sorteio pela ordem do embaralhador, numeração a partir de 1, RN02, validações do pedido de prova e consulta igual à geração (RF05). |
+| `Api` | O contrato HTTP de RF01 a RF05: status 201/200/400/404/422, header `Location` e nomes dos campos no JSON. |
+
+Dois pontos que mostram os princípios da disciplina funcionando:
+
+- **DIP na prática:** o `ServicoGeradorProva` depende de `IEmbaralhador`, então os testes trocam o
+  sorteio por um `EmbaralhadorInvertido`, com ordem previsível. Assim dá para afirmar exatamente
+  quais questões entram na prova. Para testar o `EmbaralhadorAleatorio`, basta injetar um
+  `Random` com semente fixa.
+- **API de verdade:** os testes de `Api` sobem a aplicação inteira em memória com
+  `WebApplicationFactory`, um servidor novo por teste. Cada teste começa do zero.
 
 ## Decisões que valem explicar
 
