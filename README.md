@@ -4,6 +4,9 @@ Projeto final de **Programação Orientada a Objeto 2** (FSG, 2026/2): uma API e
 cadastra questões de múltipla escolha, gera provas sorteando questões por disciplina e conteúdo,
 e permite consultar questões e provas.
 
+Para estudar para a apresentação, veja o [roteiro de estudo](docs/ROTEIRO-DE-ESTUDO.md):
+classe por classe, com o arquivo e a linha de cada funcionalidade.
+
 ## Como executar
 
 Pré-requisito: [.NET 10 SDK](https://dotnet.microsoft.com/download).
